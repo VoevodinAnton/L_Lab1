@@ -30,7 +30,6 @@ public class Client {
 
     public Matrix getMatrix() throws IOException, ClassNotFoundException {
         Matrix matrix = MatrixUtils.getMatrixFromStream(in);
-
         return matrix;
     }
 
@@ -39,7 +38,6 @@ public class Client {
         MatrixUtils.sendMatrixToStream(secondMatrix, out);
         out.flush();
     }
-
 
     public void start() throws IOException {
         socket = new Socket(host, PORT);

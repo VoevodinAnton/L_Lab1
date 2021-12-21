@@ -1,7 +1,5 @@
 package matrix;
 
-import matrix.Matrix;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

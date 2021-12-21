@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Matrix implements Serializable {
-
     @Serial
     private static final long serialVersionUID = 5248799925194507175L;
     private double[][] matrix;
@@ -51,7 +50,6 @@ public class Matrix implements Serializable {
 
     public static Matrix multiply(Matrix a, Matrix b) {
         Matrix matrixResult = new Matrix(a.getNumberOfColumn(), a.getNumberOfRows());
-
         matrixResult.matrix = Arrays.stream(a.matrix)
                 .map(r -> IntStream.range(0, b.matrix[0].length)
                         .mapToDouble(i -> IntStream.range(0, b.matrix.length)
@@ -64,7 +62,6 @@ public class Matrix implements Serializable {
 
     public static void writeMatrixToFile(Matrix matrix, File file) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-
         for (int i = 0; i < matrix.getNumberOfRows(); i++) {
             for (int j = 0; j < matrix.getNumberOfColumn(); j++) {
                 bw.write(String.valueOf(matrix.getValue(i, j)));
@@ -92,7 +89,6 @@ public class Matrix implements Serializable {
             for (int j = 0; j < matrixWidth; j++) {
                 String[] line = lines.get(i).split(" ");
                 matrixResult.matrix[i][j] = Double.parseDouble(line[j]);
-
             }
         }
         return matrixResult;
@@ -104,7 +100,6 @@ public class Matrix implements Serializable {
             matrixToString.append(Arrays.toString(this.matrix[i]));
             matrixToString.append("\n");
         }
-
         return matrixToString.toString();
     }
 }

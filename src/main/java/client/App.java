@@ -12,8 +12,6 @@ public class App {
     private static final String FILE_EXTENSION = ".txt";
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-
-
         Client matrixClient = Client.getInstance();
         matrixClient.setHost("localhost");
 
@@ -33,7 +31,6 @@ public class App {
 
         System.out.print("Output filename: ");
         String outputFilename = in.nextLine();
-
 
         matrixClient.sendMatrices(firstMatrix, secondMatrix);
         Matrix matrixResult = matrixClient.getMatrix();
