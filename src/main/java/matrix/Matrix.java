@@ -62,13 +62,12 @@ public class Matrix implements Serializable {
         return matrixResult;
     }
 
-    public static void writeMatrixToFile(double[][] matrix, String path) throws IOException {
-        File file = new File(path);
+    public static void writeMatrixToFile(Matrix matrix, File file) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                bw.write(String.valueOf(matrix[i][j]));
+        for (int i = 0; i < matrix.getNumberOfRows(); i++) {
+            for (int j = 0; j < matrix.getNumberOfColumn(); j++) {
+                bw.write(String.valueOf(matrix.getValue(i, j)));
                 bw.write(" ");
             }
             bw.newLine();
@@ -76,7 +75,7 @@ public class Matrix implements Serializable {
         bw.close();
     }
 
-    public static double[][] readMatrixFromFile(File file) throws IOException {
+    public static Matrix readMatrixFromFile(File file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         List<String> lines = new ArrayList<>();
@@ -87,15 +86,16 @@ public class Matrix implements Serializable {
         int matrixHeight = lines.size();
 
         double[][] matrix = new double[matrixHeight][matrixWidth];
+        Matrix matrixResult = new Matrix(matrix);
 
         for (int i = 0; i < matrixHeight; i++) {
             for (int j = 0; j < matrixWidth; j++) {
                 String[] line = lines.get(i).split(" ");
-                matrix[i][j] = Double.parseDouble(line[j]);
+                matrixResult.matrix[i][j] = Double.parseDouble(line[j]);
 
             }
         }
-        return matrix;
+        return matrixResult;
     }
 
     public String toString() {

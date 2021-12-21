@@ -1,13 +1,12 @@
 package client;
 
 import matrix.Matrix;
+import matrix.MatrixUtils;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Client {
     private static final int PORT = 1488;
@@ -30,19 +29,17 @@ public class Client {
     }
 
     public Matrix getMatrix() throws IOException, ClassNotFoundException {
-        Matrix matrix = (Matrix) in.readObject();
+        Matrix matrix = MatrixUtils.getMatrixFromStream(in);
 
         return matrix;
     }
 
-    public void sendMatrices(double[][] matrix1, double[][] matrix2) throws IOException {
-        List<double[][]> matrices = new ArrayList();
-        matrices.add(matrix1);
-        matrices.add(matrix2);
-
-        out.writeObject(matrices);
+    public void sendMatrices(Matrix firstMatrix, Matrix secondMatrix) throws IOException {
+        MatrixUtils.sendMatrixToStream(firstMatrix, out);
+        MatrixUtils.sendMatrixToStream(secondMatrix, out);
         out.flush();
     }
+
 
     public void start() throws IOException {
         socket = new Socket(host, PORT);

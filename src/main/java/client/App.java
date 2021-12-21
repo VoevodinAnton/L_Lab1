@@ -24,12 +24,12 @@ public class App {
         System.out.print("First input filename: ");
         String firstInputFilename = in.nextLine();
         File firstInputMatrixFile = new File(INPUT_DIRECTORY + firstInputFilename + FILE_EXTENSION);
-        double[][] firstMatrix = Matrix.readMatrixFromFile(firstInputMatrixFile);
+        Matrix firstMatrix = Matrix.readMatrixFromFile(firstInputMatrixFile);
 
         System.out.print("Second input  filename: ");
         String secondInputFilename = in.nextLine();
         File secondInputMatrixFile = new File(INPUT_DIRECTORY + secondInputFilename + FILE_EXTENSION);
-        double[][] secondMatrix = Matrix.readMatrixFromFile(secondInputMatrixFile);
+        Matrix secondMatrix = Matrix.readMatrixFromFile(secondInputMatrixFile);
 
         System.out.print("Output filename: ");
         String outputFilename = in.nextLine();
@@ -38,7 +38,8 @@ public class App {
         matrixClient.sendMatrices(firstMatrix, secondMatrix);
         Matrix matrixResult = matrixClient.getMatrix();
 
-        Matrix.writeMatrixToFile(matrixResult.getMatrix(), OUTPUT_DIRECTORY + outputFilename + FILE_EXTENSION);
+        File resultFile = new File(OUTPUT_DIRECTORY + outputFilename + FILE_EXTENSION);
+        Matrix.writeMatrixToFile(matrixResult, resultFile);
 
         in.close();
     }
