@@ -6,9 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Matrix implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 5248799925194507175L;
+public class Matrix {
     private double[][] matrix;
 
     public Matrix(int row, int column) {

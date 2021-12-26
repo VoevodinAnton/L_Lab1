@@ -28,7 +28,7 @@ public class Client {
         this.host = host;
     }
 
-    public Matrix getMatrix() throws IOException, ClassNotFoundException {
+    public Matrix getMatrix() throws IOException {
         Matrix matrix = MatrixUtils.getMatrixFromStream(in);
         return matrix;
     }
